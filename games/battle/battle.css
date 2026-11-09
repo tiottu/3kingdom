@@ -1,0 +1,59 @@
+/* 장수 대결 모양: 장수 5명 고르기, 한 판씩 보여 주기 */
+
+/* 장수 5명 고르기 */
+.slots { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 10px; }
+.slot {
+  background: #fff; border: 3px dashed #e0c9a0; border-radius: 14px; padding: 4px 2px; min-height: 110px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: .85rem;
+}
+.slot.filled { border-style: solid; border-color: #e67e22; }
+.slot .avatar { width: 56px; height: 56px; }
+.slot-num { font-size: 1.8rem; color: #e0c9a0; font-weight: bold; }
+#teamGo { display: block; width: 100%; margin-bottom: 6px; }
+#teamGo:disabled { opacity: .5; }
+.card { position: relative; }
+.card.chosen { border-color: #e67e22; background: #fff1de; }
+.badge {
+  position: absolute; top: 6px; left: 6px; width: 28px; height: 28px; border-radius: 50%;
+  background: #e67e22; color: #fff; font-weight: bold; line-height: 28px;
+}
+
+/* 장수 대결 한 판씩 */
+.clash-names { padding: 0 52px; word-break: break-all; }
+.clash-names .me { color: #3b7dd8; }
+.clash-names .you { color: #e67e22; }
+.clash-score { text-align: center; font-size: 2.4rem; font-weight: bold; margin-bottom: 10px; }
+.round {
+  display: grid; grid-template-columns: 1fr 1.1fr 1fr; align-items: center; gap: 6px;
+  background: #fff; border-radius: 18px; padding: 8px; margin-bottom: 8px; border: 4px solid #eee;
+  animation: up .35s;
+}
+.round.won { border-color: #3fa34d; }
+.round.lost { border-color: #e74c3c; }
+.round.draw { border-color: #c9c9c9; }
+.round .side { text-align: center; }
+.round .side .avatar { width: 72px; height: 72px; }
+.round .side.right .avatar { transform: scaleX(-1); }
+.round .side b { display: block; }
+.round .side small { color: #7a5a30; }
+.round .mid { text-align: center; display: flex; flex-direction: column; gap: 2px; }
+.round .mid span { font-weight: bold; font-size: 1.05rem; }
+.empty-slot { height: 72px; line-height: 72px; color: #aaa; }
+.clash-score { font-size: 1.6rem; }
+.round .side small { display: block; }
+.round .side.out .avatar { filter: grayscale(1); opacity: .5; }
+.round .side .after { font-weight: bold; color: #2e7d4f; }
+.round .side.out .after { color: #999; }
+.ebar { display: block; height: 7px; background: #eee; border-radius: 4px; overflow: hidden; margin: 2px 6px; }
+.ebar i { display: block; height: 100%; border-radius: 4px; }
+.clash-queue { background: #fff; border-radius: 16px; padding: 6px; margin-bottom: 10px; }
+.queue { display: flex; justify-content: center; gap: 4px; padding: 2px; }
+.queue.mine { border-bottom: 2px dashed #e0c9a0; }
+.queue .q { text-align: center; width: 50px; border-radius: 10px; border: 3px solid transparent; }
+.queue.mine .q.now { border-color: #3b7dd8; }
+.queue.theirs .q.now { border-color: #e67e22; }
+.queue .q .avatar { width: 42px; height: 42px; }
+.queue .q small { display: block; font-size: .8rem; }
+.queue .q.out .avatar { filter: grayscale(1); opacity: .35; }
+
+.card .busy { display: block; color: #a04000; font-weight: bold; }

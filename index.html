@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>삼국지 꼬마 장수</title>
+<link rel="stylesheet" href="ui/ui.css">
+<link rel="stylesheet" href="games/quiz/quiz.css">
+<link rel="stylesheet" href="games/online/online.css">
+<link rel="stylesheet" href="games/battle/battle.css">
+<link rel="stylesheet" href="games/conquest/conquest.css">
+</head>
+<body>
+<button id="soundBtn" class="sound-btn" title="소리 켜기/끄기">🔊</button>
+
+<!-- 처음 화면 -->
+<section id="home" class="screen active">
+  <button class="account-chip" id="accountChip"></button>
+  <div class="title-box">
+    <div class="title-flags">🚩 🏯 🚩</div>
+    <h1>삼국지 꼬마 장수</h1>
+    <p class="sub">문제를 맞히면 내 장수가 힘을 내요!</p>
+  </div>
+  <div class="home-faces" id="homeFaces"></div>
+  <div class="menu">
+    <button class="big-btn green" id="btnSolo">🧒 혼자 하기<small>이야기 6판, 이기면 장수가 친구가 돼요</small></button>
+    <button class="big-btn orange" id="btnOnline">📱📱 둘이 하기<small>각자 핸드폰으로 방 번호를 넣고 장수 대결</small></button>
+    <button class="big-btn teal" id="btnMap">🗺️ 땅따먹기<small>중국 지도에서 성을 차지하고 그 지역 장수를 모아요</small></button>
+    <button class="big-btn purple" id="btnCpu">⚔️ 장수 대결<small>장수 5명을 골라 컴퓨터와 상성 대결</small></button>
+    <button class="big-btn blue" id="btnDex">📚 장수 도감<small>모은 장수를 구경해요</small></button>
+  </div>
+</section>
+
+<!-- 둘이 하기 (각자 핸드폰): 별명으로 들어가기, 방 만들기/들어가기 -->
+<section id="online" class="screen">
+  <button class="back" data-go="home">← 처음으로</button>
+  <h2>📱📱 둘이 하기 (각자 핸드폰)</h2>
+  <div class="panel" id="noServer">
+    서버가 아직 준비되지 않았어요. 어른이 서버를 연결하면 각자 핸드폰으로 대결할 수 있어요.<br>
+    그동안은 아래 <b>한 폰으로 둘이 퀴즈 대결</b>이나 <b>장수 대결(컴퓨터)</b>을 해 보세요!
+  </div>
+  <div class="panel" id="loginBox">
+    <p>내 <b>별명</b>과 <b>비밀 숫자 4개</b>를 정해요. 도감이 이 별명으로 저장돼서, 다른 핸드폰에서 들어와도 그대로예요.<br>
+      <small>⚠️ 진짜 이름 말고 별명을 써요. 비밀 숫자는 나만 알아요.</small></p>
+    <input class="text-in" id="nickInput" maxlength="10" placeholder="별명 (2~10글자)" autocomplete="off">
+    <input class="text-in" id="pinInput" maxlength="4" inputmode="numeric" type="password" placeholder="비밀 숫자 4개" autocomplete="off">
+    <button class="big-btn green" id="loginBtn">들어가기</button>
+    <p class="msg" id="loginMsg"></p>
+  </div>
+  <div class="panel" id="roomBox">
+    <p id="whoami"></p>
+    <button class="big-btn orange" id="roomCreate">🏠 방 만들기<small>방 번호가 나오면 친구에게 알려 줘요</small></button>
+    <div class="join-row">
+      <input class="text-in" id="codeInput" maxlength="4" inputmode="numeric" placeholder="친구의 방 번호 4개" autocomplete="off">
+      <button class="big-btn blue" id="roomJoin">들어가기</button>
+    </div>
+    <p class="msg" id="roomMsg"></p>
+    <button class="back small" id="logoutBtn">👤 다른 별명으로 바꾸기</button>
+  </div>
+  <button class="back" id="btnLocalDuo">📱 한 폰으로 둘이 퀴즈 대결</button>
+</section>
+
+<!-- 장수 대결: 장수 5명 고르기 -->
+<section id="team" class="screen">
+  <button class="back" id="teamBack">← 뒤로</button>
+  <h2 id="teamTitle">장수 대결</h2>
+  <p class="panel" id="teamInfo"></p>
+  <p class="perk-legend">⚔️ <b>1:1 연속 대결!</b> 1번 장수끼리 먼저 싸워요. 이긴 장수는 <b>남은 에너지⚡</b>로 상대의 다음 장수와 계속 싸워요.
+    상대 장수를 모두 이기면 승리!<br>
+    🐎 기병 &gt; 🏹 궁병 &gt; 🔱 창병 &gt; 🐎 기병 &nbsp;상성이 좋으면 그 싸움에서 힘 +50%!<br>
+    처음 에너지는 능력 4개를 더한 값이에요. 땅따먹기에서 성을 지키는 장수는 성벽 덕분에 에너지가 늘어요(작은 성 +10%, 보통 성 +25%, 🏯큰 성 +40%).</p>
+  <div class="level-row" id="teamLevels"></div>
+  <div class="panel wait-box" id="teamWait"></div>
+  <div id="teamPicker">
+    <div class="slots" id="teamSlots"></div>
+    <button class="big-btn green" id="teamGo">대결!</button>
+    <p class="msg" id="teamMsg"></p>
+    <div class="level-row" id="teamFilter"></div>
+    <div class="pick-grid" id="teamGrid"></div>
+  </div>
+</section>
+
+<!-- 땅따먹기: 첫 화면 -->
+<section id="mapHome" class="screen">
+  <button class="back" data-go="home">← 처음으로</button>
+  <h2>🗺️ 땅따먹기</h2>
+  <p class="perk-legend">중국과 한반도 지도에 성이 76개 있어요! 내 성과 길로 이어진 성을 <b>장수 5명 상성 대결</b>로 차지해요.<br>
+    성을 차지하면 <b>그 지역에서 활동한 장수</b>가 내 도감에 들어와요.</p>
+  <div class="panel">
+    <h3>🧒 혼자 하기 (컴퓨터 나라와)</h3>
+    <p>나라를 고르면 그 나라의 수도에서 시작해요. 한 턴에 공격 3번, 그다음 컴퓨터 나라 차례예요.</p>
+    <div id="soloContinue"></div>
+    <div class="level-row" id="soloCqLevels"></div>
+    <div class="pick-grid" id="soloFactions"></div>
+  </div>
+  <div class="panel">
+    <h3>📱 친구들과 (각자 핸드폰)</h3>
+    <div id="netBox"></div>
+  </div>
+</section>
+
+<!-- 땅따먹기: 지도 -->
+<section id="conquest" class="screen wide">
+  <div class="cq-top">
+    <button class="back small" id="cqExit">← 나가기</button>
+    <div id="cqStatus" class="cq-status"></div>
+  </div>
+  <div class="cq-btns">
+    <button class="level-chip" id="cqDefense">🛡️ 수비 장수 정하기</button>
+    <button class="level-chip on" id="cqEnd">⏭️ 턴 끝내기</button>
+  </div>
+  <div id="cqMap" class="cq-map"></div>
+  <div id="cqPanel" class="panel"></div>
+  <div id="cqRank" class="panel"></div>
+  <div id="cqLog" class="panel cq-log"></div>
+</section>
+
+<!-- 장수 대결: 한 판씩 보여 주기 -->
+<section id="clash" class="screen">
+  <h2 class="clash-names" id="clashNames"></h2>
+  <div class="clash-score" id="clashScore"></div>
+  <div class="clash-queue" id="clashQueue"></div>
+  <div class="clash-rounds" id="clashRounds"></div>
+</section>
+
+<!-- 혼자 하기: 난이도 -->
+<section id="level" class="screen">
+  <button class="back" data-go="home">← 처음으로</button>
+  <h2>어떤 문제로 할까요?</h2>
+  <div class="level-list" id="soloLevels"></div>
+</section>
+
+<!-- 혼자 하기: 이야기 지도 -->
+<section id="map" class="screen">
+  <button class="back" data-go="level">← 난이도 바꾸기</button>
+  <h2>삼국지 이야기 지도 <span class="tag" id="mapLevel"></span></h2>
+  <p class="map-info" id="mapInfo"></p>
+  <div class="stage-list" id="stageList"></div>
+</section>
+
+<!-- 장수 고르기 -->
+<section id="pick" class="screen">
+  <button class="back" id="pickBack">← 뒤로</button>
+  <h2 id="pickTitle">장수를 골라요</h2>
+  <div class="level-row" id="pickLevels"></div>
+  <div class="level-row" id="pickFilter"></div>
+  <div class="pick-grid" id="pickGrid"></div>
+  <p class="pick-note" id="pickNote"></p>
+  <p class="perk-legend" id="perkLegend"></p>
+</section>
+
+<!-- 대결 -->
+<section id="battle" class="screen">
+  <div class="battle-top">
+    <button class="back small" id="quitBtn">✖ 그만하기</button>
+    <div class="stage-title" id="stageTitle"></div>
+  </div>
+  <div class="arena" id="arena">
+    <div class="fighter" id="f0">
+      <div class="who" id="who0"></div>
+      <div class="pic" id="pic0"></div>
+      <div class="name" id="name0"></div>
+      <div class="hearts" id="hearts0"></div>
+      <div class="perks" id="perks0"></div>
+    </div>
+    <div class="vs">VS</div>
+    <div class="fighter right" id="f1">
+      <div class="who" id="who1"></div>
+      <div class="pic" id="pic1"></div>
+      <div class="name" id="name1"></div>
+      <div class="hearts" id="hearts1"></div>
+      <div class="perks" id="perks1"></div>
+    </div>
+  </div>
+  <div class="quiz-card" id="quizCard">
+    <div class="turn" id="turnLabel"></div>
+    <div class="question" id="question"></div>
+    <div class="answers" id="answers"></div>
+    <button class="hint-btn" id="hintBtn"></button>
+    <div class="message" id="message"></div>
+  </div>
+</section>
+
+<!-- 장수 도감 -->
+<section id="dex" class="screen">
+  <button class="back" data-go="home">← 처음으로</button>
+  <h2>장수 도감 <span class="tag" id="dexCount"></span></h2>
+  <div class="level-row" id="dexFilter"></div>
+  <div class="dex-grid" id="dexGrid"></div>
+</section>
+
+<!-- 결과 창 -->
+<div class="overlay" id="result">
+  <div class="result-box">
+    <div class="result-pic" id="resultPic"></div>
+    <h2 id="resultTitle"></h2>
+    <div class="stars" id="resultStars"></div>
+    <p id="resultText"></p>
+    <div class="result-btns" id="resultBtns"></div>
+  </div>
+</div>
+
+<!-- 도감 자세히 보기 -->
+<div class="overlay" id="dexInfo">
+  <div class="result-box">
+    <div class="result-pic" id="dexPic"></div>
+    <h2 id="dexName"></h2>
+    <p class="tag" id="dexNation"></p>
+    <p class="dex-how" id="dexHow"></p>
+    <p id="dexIntro"></p>
+    <div id="dexStats"></div>
+    <div class="result-btns"><button class="big-btn blue" id="dexClose">닫기</button></div>
+  </div>
+</div>
+
+<!-- 읽는 순서가 중요해요: 데이터 → core → ui → 게임.
+     파일 맨 위에서 바로 실행되는 줄은 앞에서 읽은 파일의 이름만 쓸 수 있어요 (함수 안은 괜찮아요).
+     모든 파일이 이름을 같이 쓰니, 새 이름은 게임마다 앞말을 붙여 겹치지 않게 해요. -->
+<!-- 데이터 -->
+<script src="core/config.js"></script>
+<script src="data/generals.js"></script>
+<script src="data/generals-more.js"></script>
+<script src="data/generals-more-2.js"></script>
+<script src="games/quiz/quiz-data.js"></script>
+<script src="games/quiz/quiz-1.js"></script>
+<script src="games/quiz/quiz-2.js"></script>
+<script src="games/quiz/quiz-3.js"></script>
+<script src="games/conquest/map-data.js"></script>
+<!-- core: 화면 없는 바탕 -->
+<script src="core/util.js"></script>
+<script src="core/server.js"></script>
+<script src="core/save.js"></script>
+<!-- ui: 함께 쓰는 화면 -->
+<script src="ui/art.js"></script>
+<script src="ui/ui.js"></script>
+<script src="ui/dex.js"></script>
+<!-- 게임 -->
+<script src="games/quiz/quiz.js"></script>
+<script src="games/battle/rules.js"></script>
+<script src="games/battle/team.js"></script>
+<script src="games/online/room.js"></script>
+<script src="games/conquest/conquest.js"></script>
+<script src="games/conquest/conquest-map.js"></script>
+<script src="games/conquest/conquest-net.js"></script>
+</body>
+</html>

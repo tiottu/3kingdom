@@ -1,0 +1,132 @@
+/* 삼국지 꼬마 장수 - 공통 모양 (ui): 바탕, 버튼, 카드, 능력치, 안내판, 결과 창 */
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  background: linear-gradient(#fff8e7, #ffe9c7);
+  color: #3a2a20;
+  word-break: keep-all;
+}
+button { font-family: inherit; cursor: pointer; }
+h1 { font-size: 2.4rem; margin: 6px 0; color: #b03a2e; text-shadow: 2px 2px 0 #ffd58a; }
+h2 { text-align: center; margin: 10px 0 16px; }
+
+.screen { display: none; max-width: 760px; margin: 0 auto; padding: 16px; }
+.screen.active { display: block; }
+
+.sound-btn {
+  position: fixed; top: 10px; right: 10px; z-index: 20;
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 3px solid #e0b46c; background: #fff; font-size: 1.3rem;
+}
+.back {
+  border: none; background: #fff; border-radius: 20px; padding: 8px 14px;
+  font-size: 1rem; box-shadow: 0 2px 0 #e0c9a0;
+}
+.back.small { padding: 6px 10px; font-size: .9rem; }
+.tag {
+  display: inline-block; font-size: .9rem; background: #fff; border-radius: 12px;
+  padding: 3px 10px; color: #7a5a30; vertical-align: middle;
+}
+
+/* 처음 화면 */
+.title-box { text-align: center; margin-top: 24px; }
+.title-flags { font-size: 2rem; }
+.sub { font-size: 1.1rem; margin: 0; }
+.home-faces { display: flex; justify-content: center; gap: 6px; margin: 16px 0; }
+.home-faces .avatar { width: 70px; height: 70px; }
+.menu { display: flex; flex-direction: column; gap: 12px; max-width: 420px; margin: 0 auto; }
+.big-btn {
+  border: none; border-radius: 18px; padding: 14px 18px; font-size: 1.3rem; font-weight: bold;
+  color: #fff; box-shadow: 0 5px 0 rgba(0, 0, 0, .2); transition: transform .1s;
+}
+.big-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(0, 0, 0, .2); }
+.big-btn small { display: block; font-size: .85rem; font-weight: normal; opacity: .9; margin-top: 4px; }
+.green { background: #3fa34d; }
+.orange { background: #e67e22; }
+.blue { background: #3b7dd8; }
+.gray { background: #9aa3ad; }
+
+/* 난이도 */
+.level-list { display: flex; flex-direction: column; gap: 12px; max-width: 420px; margin: 0 auto; }
+.level-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.level-chip {
+  border: 3px solid #e0c9a0; background: #fff; border-radius: 16px; padding: 8px 14px; font-size: 1rem;
+}
+.level-chip.on { border-color: #e67e22; background: #fff1de; font-weight: bold; }
+
+/* 장수 고르기 / 도감 */
+.pick-grid, .dex-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+.card {
+  background: #fff; border: 4px solid transparent; border-radius: 18px; padding: 8px; text-align: center;
+  box-shadow: 0 4px 0 #e6d2ae; font-size: 1rem;
+}
+.card .avatar { width: 90px; height: 90px; }
+.card b { display: block; font-size: 1.1rem; }
+.card small { color: #8a6d45; }
+.card.taken { opacity: .4; cursor: not-allowed; }
+.card.locked { background: #f1f3f6; }
+/* 도감: 아직 못 만난 장수는 흑백 */
+.dex-grid .card.locked .avatar, .result-pic.mono .avatar { filter: grayscale(1); opacity: .45; }
+.dex-grid .card.locked b { color: #8a8f98; }
+.dex-grid .card.owned { border-color: #f4c430; }
+.dex-how { color: #8a6d45; font-weight: bold; margin: 6px 0; }
+.dex-how:empty { display: none; }
+.pick-note { text-align: center; color: #8a6d45; }
+
+/* 능력치와 특기 */
+.stats { margin: 6px 2px 2px; }
+.stat { display: flex; align-items: center; gap: 4px; font-size: .8rem; line-height: 1.5; }
+.stat .bar { flex: 1; height: 8px; background: #f0e6d6; border-radius: 4px; overflow: hidden; }
+.stat .bar i { display: block; height: 100%; border-radius: 4px; }
+.stat b { width: 1.3em; text-align: right; }
+.stats.big .stat { font-size: 1rem; gap: 8px; }
+.stats.big .stat span:first-child { width: 6.5em; text-align: left; }
+.stats.big .bar { height: 12px; }
+.perk-line { display: block; margin-top: 2px; }
+.perk-legend {
+  background: #fff; border-radius: 16px; padding: 10px 14px; font-size: .95rem; line-height: 1.6; color: #6b5030;
+}
+.perk-list { text-align: left; margin-top: 10px; line-height: 1.7; font-size: .95rem; }
+.perks { font-size: .95rem; min-height: 1.3em; }
+
+.purple { background: #8e44ad; }
+.account-chip {
+  border: none; background: #fff; border-radius: 20px; padding: 8px 14px; font-size: 1rem;
+  box-shadow: 0 2px 0 #e0c9a0; font-weight: bold; color: #6b5030;
+}
+.panel { background: #fff; border-radius: 18px; padding: 14px; margin: 0 0 12px; line-height: 1.6; }
+.panel:empty { display: none; }
+.text-in {
+  display: block; width: 100%; font-size: 1.2rem; padding: 12px; margin: 8px 0;
+  border: 3px solid #e0c9a0; border-radius: 14px; font-family: inherit;
+}
+.join-row { display: flex; gap: 8px; align-items: center; margin-top: 10px; }
+.join-row .text-in { flex: 1; margin: 0; }
+.join-row .big-btn { flex: none; padding: 12px 16px; }
+.msg { min-height: 1.4em; color: #b03a2e; font-weight: bold; }
+
+.teal { background: #16a085; }
+.screen.wide { max-width: 1040px; }
+.panel h3 { margin: 0 0 6px; }
+
+/* 결과 / 도감 창 */
+.overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, .45); z-index: 30;
+  align-items: center; justify-content: center; padding: 16px;
+}
+.overlay.show { display: flex; }
+.result-box {
+  background: #fff; border-radius: 26px; padding: 20px; max-width: 420px; width: 100%; text-align: center;
+  animation: up .3s;
+}
+@keyframes up { from { transform: scale(.8); opacity: 0; } }
+.result-pic .avatar { width: 130px; height: 130px; }
+.stars { font-size: 2.4rem; }
+.result-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+
+@media (max-width: 520px) {
+  h1 { font-size: 1.9rem; }
+}

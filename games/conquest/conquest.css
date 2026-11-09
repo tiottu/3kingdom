@@ -1,0 +1,48 @@
+/* 땅따먹기 모양 */
+
+#soloContinue .big-btn, .net-list .big-btn, #netBox .big-btn { width: 100%; margin-bottom: 8px; }
+.cq-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding-right: 52px; }
+.cq-status { font-size: 1rem; line-height: 1.5; }
+.cq-btns { display: flex; gap: 8px; margin: 8px 0; flex-wrap: wrap; }
+.cq-map { overflow-x: auto; border-radius: 18px; }
+.cq-svg { display: block; width: 100%; min-width: 900px; height: auto; }
+.region { font-size: 24px; font-weight: bold; fill: #b08a4a; opacity: .45; text-anchor: middle; pointer-events: none; }
+.road.sea { stroke: #3a8fc4; stroke-dasharray: 10 8; }
+.mt { pointer-events: none; } .mt1 { fill: #c8ab72; } .mt2 { fill: #ad8f55; } .mt3 { fill: #fffaf0; }
+.region.v { writing-mode: vertical-rl; letter-spacing: 4px; }
+.tribe { font-size: 18px; font-weight: bold; fill: #8a5a2b; opacity: .8; text-anchor: middle; pointer-events: none; }
+.ship { font-size: 16px; fill: #1f6f8b; text-anchor: middle; font-weight: bold; pointer-events: none; }
+
+.river { font-size: 22px; fill: #3a8fc4; font-weight: bold; opacity: .8; }
+.road { stroke: #c9a86a; stroke-width: 3; stroke-dasharray: 6 5; }
+.road.hot { stroke: #ff9f1a; stroke-width: 6; stroke-dasharray: none; }
+.city { cursor: pointer; }
+.city circle { stroke: #fff; stroke-width: 3; }
+.city.mine circle { stroke: #3a2a20; stroke-width: 4; }
+.city.sel circle { stroke: #ffd400; stroke-width: 7; }
+.city.near circle { animation: blink 1s infinite; }
+.city.target circle { stroke: #ff5e00; stroke-width: 7; }
+@keyframes blink { 50% { stroke: #ff9f1a; stroke-width: 8; } }
+.city .cnum { font-size: 16px; font-weight: bold; fill: #fff; text-anchor: middle; pointer-events: none; }
+.city .cname {
+  font-size: 17px; font-weight: bold; fill: #3a2a20; text-anchor: middle; pointer-events: none;
+  paint-order: stroke; stroke: #fff; stroke-width: 4px;
+}
+.cq-cname { font-size: 1.3rem; }
+.city .wall { fill: none; stroke: #8d6e63; stroke-width: 4; stroke-dasharray: 5 3; }
+.tag.grade { font-weight: bold; }
+.tag.g3 { background: #fde8d0; color: #a04000; }
+.tag.g2 { background: #fff3c4; color: #7a5a30; }
+.tag.g1 { background: #eef2f6; color: #5d6d7e; }
+.cq-label { font-weight: bold; margin: 6px 0 4px; color: #6b5030; }
+.cq-gens { display: flex; flex-wrap: wrap; gap: 6px; }
+.cq-gen { text-align: center; width: 66px; font-size: .8rem; }
+.cq-gen .avatar { width: 56px; height: 56px; }
+.cq-gen small { display: block; }
+.cq-gen.mono .avatar { filter: grayscale(1); opacity: .45; }
+.cq-help { color: #6b5030; }
+#cqAttack { width: 100%; margin-top: 8px; }
+.cq-log { font-size: .95rem; color: #6b5030; }
+.cq-log div:first-child { font-weight: bold; color: #3a2a20; }
+.result-pic.many { display: flex; justify-content: center; flex-wrap: wrap; }
+.result-pic.many .avatar { width: 76px; height: 76px; }

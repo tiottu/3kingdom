@@ -1,0 +1,6 @@
+/* 둘이 하기 모양 */
+
+#roomBox .big-btn, #loginBox .big-btn { width: 100%; }
+#btnLocalDuo { display: block; margin: 8px auto 0; }
+.room-code { font-size: 1.6rem; color: #e67e22; letter-spacing: 3px; }
+.wait-box { text-align: center; font-size: 1.2rem; font-weight: bold; padding: 24px; }
