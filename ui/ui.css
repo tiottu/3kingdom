@@ -48,6 +48,7 @@ h2 { text-align: center; margin: 10px 0 16px; }
 .orange { background: #e67e22; }
 .blue { background: #3b7dd8; }
 .gray { background: #9aa3ad; }
+.red { background: #b03a2e; }
 
 /* 난이도 */
 .level-list { display: flex; flex-direction: column; gap: 12px; max-width: 420px; margin: 0 auto; }

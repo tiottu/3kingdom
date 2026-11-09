@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>삼국지 꼬마 장수</title>
+<!-- 앱으로 설치하기 (ui/install.js, sw.js) -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#b03a2e">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="꼬마 장수">
 <link rel="stylesheet" href="ui/ui.css">
 <link rel="stylesheet" href="games/quiz/quiz.css">
 <link rel="stylesheet" href="games/online/online.css">
@@ -28,6 +36,7 @@
     <button class="big-btn teal" id="btnMap">🗺️ 땅따먹기<small>중국 지도에서 성을 차지하고 그 지역 장수를 모아요</small></button>
     <button class="big-btn purple" id="btnCpu">⚔️ 장수 대결<small>장수 5명을 골라 컴퓨터와 상성 대결</small></button>
     <button class="big-btn blue" id="btnDex">📚 장수 도감<small>모은 장수를 구경해요</small></button>
+    <button class="big-btn red" id="installBtn" style="display:none">📲 앱으로 설치<small>홈 화면에 꼬마 장수 앱을 만들어요</small></button>
   </div>
 </section>
 
@@ -234,6 +243,7 @@
 <script src="ui/art.js"></script>
 <script src="ui/ui.js"></script>
 <script src="ui/dex.js"></script>
+<script src="ui/install.js"></script>
 <!-- 게임 -->
 <script src="games/quiz/quiz.js"></script>
 <script src="games/battle/rules.js"></script>
