@@ -1,0 +1,38 @@
+// 삼국지 꼬마 장수 안드로이드 앱 (GitHub Actions 가 빌드한다: .github/workflows/android.yml)
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'io.github.tiottu.kkomajangsu'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'io.github.tiottu.kkomajangsu'
+        minSdk 24
+        targetSdk 34
+        // 빌드할 때마다 번호가 올라가야 새 앱을 덮어서 설치할 수 있다
+        versionCode((System.getenv('GITHUB_RUN_NUMBER') ?: '1').toInteger())
+        versionName "1.0.${System.getenv('GITHUB_RUN_NUMBER') ?: '0'}"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            // 따로 서명 키를 두지 않고 빌드 서버의 기본 키로 서명한다 (비밀 키를 공개 저장소에 두지 않기 위해)
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
