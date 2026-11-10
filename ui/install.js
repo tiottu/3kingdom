@@ -10,8 +10,11 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
 }
 
 const installUi = { prompt: null };
-const isAppMode = () => window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+// 안드로이드 설치 파일 (android/ 를 GitHub Actions 가 빌드해서 Releases 에 올린다. 크롬이 없는 폰용)
+const INSTALL_APK = 'https://github.com/tiottu/3kingdom/releases/latest/download/kkomajangsu.apk';
 const installUa = () => navigator.userAgent || '';
+// 홈 화면 앱으로 열었거나, 안드로이드 앱(KkomaJangsuApp) 안이면 설치 버튼이 필요 없다
+const isAppMode = () => window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true || /KkomaJangsuApp/.test(installUa());
 const isIos = () => /iphone|ipad|ipod/i.test(installUa()) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 const isAndroid = () => /android/i.test(installUa());
 // 카카오톡, 네이버, 인스타그램, 페이스북, 라인, 밴드 안에서 링크를 열면 설치가 안 된다
@@ -59,7 +62,14 @@ $('installBtn').onclick = async () => {
     } catch (e) { /* 설치 창을 못 띄우면 아래 안내로 */ }
   }
   const [title, text] = installGuide();
-  showResult({ title, text, buttons: [['알겠어요', 'blue', () => {}]] });
+  const buttons = [['알겠어요', 'blue', () => {}]];
+  // 안드로이드는 크롬이 없어도 되는 설치 파일도 준다
+  if (isAndroid()) {
+    buttons.unshift(['📦 설치 파일(APK) 받기', 'green', () => { location.href = INSTALL_APK; }]);
+    return showResult({ title, buttons,
+      text: text + ' 크롬이 없으면 "설치 파일 받기"를 눌러요. 받은 파일을 열고 "출처를 알 수 없는 앱" 설치를 허용하면 돼요.' });
+  }
+  showResult({ title, text, buttons });
 };
 
 drawInstallBtn();
