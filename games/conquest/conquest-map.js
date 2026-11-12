@@ -62,6 +62,7 @@ function drawConquest() {
       `<circle r="${[0, 15, 19, 22][c.grade]}" fill="${M.color(o)}"/><text class="cnum" y="6">${o === M.me ? '★' : CITY_GRADES[c.grade].slots}</text>` +
       `<text class="cname" y="${[0, 34, 38, 44][c.grade]}">${c.grade === 3 ? '🏯' : ''}${c.name}</text></g>`;
   }
+  s += raidMarks(); // 이번 턴 오랑캐 공격 (conquest-tribes.js)
   $('cqMap').innerHTML = s + '</svg>';
   $('cqMap').querySelectorAll('.city').forEach((g) => { g.onclick = () => clickCity(g.dataset.id); });
 

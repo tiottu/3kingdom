@@ -238,11 +238,14 @@ $('cqEnd').onclick = () => {
   }
   solo.turn++;
   solo.used = 0;
+  const raid = tribeRaid(); // 오랑캐가 가끔 쳐들어온다 (conquest-tribes.js)
   soloLog(`⏭️ ${solo.turn}번째 턴! 공격을 ${MOVES}번 할 수 있어요.`);
   mapUi.sel = mapUi.target = null;
   soloSave();
   drawConquest();
-  checkSoloEnd();
+  const M = model(), mine = myCityCount(M);
+  if (mine === CITIES.length || mine === 0) { checkSoloEnd(); return; }
+  if (raid && raid.owner === solo.me) showRaidNews(raid);
 };
 
 function cpuMove(k, L) {

@@ -10,7 +10,7 @@ const FILES = [
   'games/quiz/quiz.css', 'games/quiz/quiz-data.js', 'games/quiz/quiz-1.js', 'games/quiz/quiz-2.js', 'games/quiz/quiz-3.js', 'games/quiz/quiz.js',
   'games/battle/battle.css', 'games/battle/rules.js', 'games/battle/team.js',
   'games/online/online.css', 'games/online/room.js',
-  'games/conquest/conquest.css', 'games/conquest/map-data.js', 'games/conquest/conquest.js', 'games/conquest/conquest-map.js', 'games/conquest/conquest-net.js'
+  'games/conquest/conquest.css', 'games/conquest/map-data.js', 'games/conquest/conquest.js', 'games/conquest/conquest-map.js', 'games/conquest/conquest-tribes.js','games/conquest/conquest-net.js'
 ];
 
 self.addEventListener('install', (e) => {

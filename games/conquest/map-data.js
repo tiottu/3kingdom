@@ -68,7 +68,7 @@ const CITIES = [
   { id: 'hongnong', name: '홍농', x: 510, y: 320, desc: '장안과 낙양 사이 산길의 성이에요.', gens: ['caochun'] },
   { id: 'xinye', name: '신야', x: 630, y: 415, desc: '유비가 머물며 서서와 제갈량을 만난 작은 성이에요.', gens: ['xushu', 'yiji'] },
   { id: 'dangyang', name: '당양', x: 505, y: 478, desc: '장판교가 있는 곳이에요. 장비가 다리 위에서 크게 외쳤어요.', gens: ['chendao'] },
-  { id: 'chibi', name: '적벽', x: 640, y: 525, desc: '적벽대전이 벌어진 큰 강가예요.', gens: ['panzhang'] },
+  { id: 'chibi', name: '적벽', x: 640, y: 525, desc: '적벽대전이 벌어진 큰 강가예요.', gens: ['panzhang', 'kimhyungsun'] },
   { id: 'poyang', name: '파양', x: 795, y: 578, desc: '아주 큰 호수 옆의 땅이에요. 오나라 수군이 연습했어요.', gens: ['jiangqin', 'zhuran'] },
   { id: 'cangwu', name: '창오', x: 585, y: 745, desc: '남쪽 강가의 성이에요. 더 남쪽 교주로 가는 길목이에요.', gens: ['buzhi'] },
   { id: 'xiping', name: '서평', x: 125, y: 255, desc: '서쪽 끝 높은 고원의 성이에요.', gens: ['guohuai'] },

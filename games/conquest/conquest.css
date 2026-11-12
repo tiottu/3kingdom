@@ -11,6 +11,8 @@
 .road.sea { stroke: #3a8fc4; stroke-dasharray: 10 8; }
 .mt { pointer-events: none; } .mt1 { fill: #c8ab72; } .mt2 { fill: #ad8f55; } .mt3 { fill: #fffaf0; }
 .region.v { writing-mode: vertical-rl; letter-spacing: 4px; }
+.raid-line { stroke: #c0392b; stroke-width: 4; stroke-dasharray: 10 6; opacity: .8; pointer-events: none; }
+.raid-mark { font-size: 26px; pointer-events: none; }
 .tribe { font-size: 18px; font-weight: bold; fill: #8a5a2b; opacity: .8; text-anchor: middle; pointer-events: none; }
 .ship { font-size: 16px; fill: #1f6f8b; text-anchor: middle; font-weight: bold; pointer-events: none; }
 
