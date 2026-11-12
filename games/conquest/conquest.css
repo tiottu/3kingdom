@@ -1,6 +1,7 @@
 /* 땅따먹기 모양 */
 
 #soloContinue .big-btn, .net-list .big-btn, #netBox .big-btn { width: 100%; margin-bottom: 8px; }
+#netBox .join-row .big-btn { width: auto; margin-bottom: 0; } /* 지도 번호 칸 옆 버튼은 칸을 밀어내지 않게 */
 .cq-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding-right: 52px; }
 .cq-status { font-size: 1rem; line-height: 1.5; }
 .cq-btns { display: flex; gap: 8px; margin: 8px 0; flex-wrap: wrap; }

@@ -111,8 +111,13 @@ h2 { text-align: center; margin: 10px 0 16px; }
   border: 3px solid #e0c9a0; border-radius: 14px; font-family: inherit;
 }
 .join-row { display: flex; gap: 8px; align-items: center; margin-top: 10px; }
-.join-row .text-in { flex: 1; margin: 0; }
-.join-row .big-btn { flex: none; padding: 12px 16px; }
+/* 번호 넣는 칸 + 들어가기 버튼 한 줄. 칸이 버튼에 밀려 좁아지지 않게 칸에 최소 넓이를 준다 */
+.join-row .text-in {
+  flex: 1 1 auto; min-width: 7.5em; width: auto; margin: 0;
+  font-size: 1.5rem; text-align: center; letter-spacing: 6px; font-weight: bold;
+}
+.join-row .text-in::placeholder { font-size: 1rem; letter-spacing: 0; font-weight: normal; }
+.join-row .big-btn { flex: 0 0 auto; width: auto; margin: 0; padding: 12px 16px; }
 .msg { min-height: 1.4em; color: #b03a2e; font-weight: bold; }
 
 .teal { background: #16a085; }

@@ -1,6 +1,7 @@
 /* 둘이 하기 모양 */
 
 #roomBox .big-btn, #loginBox .big-btn { width: 100%; }
+#roomBox .join-row .big-btn { width: auto; } /* 방 번호 칸 옆 버튼은 칸을 밀어내지 않게 */
 #btnLocalDuo { display: block; margin: 8px auto 0; }
 .room-code { font-size: 1.6rem; color: #e67e22; letter-spacing: 3px; }
 .wait-box { text-align: center; font-size: 1.2rem; font-weight: bold; padding: 24px; }
